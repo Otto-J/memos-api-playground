@@ -1,0 +1,6 @@
+
+curl -H "Authorization: Bearer {{$dotenv MEMO_TOKEN}}" \
+ {{$dotenv MEMO_BASE}}/v1/memos
+
+
+
