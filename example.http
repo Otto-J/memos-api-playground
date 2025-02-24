@@ -1,3 +1,55 @@
+## Activity Service
+
+### 给定ID 返回 activity
+
+## UserService 用户服务
+### ListUsers returns a list of users
+GET {{$dotenv MEMO_BASE}}/v1/users
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+### CreateUser creates a new user
+POST {{$dotenv MEMO_BASE}}/v1/users
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+{
+  "name": "Alice",
+  "role": "admin", 
+  "username": "alice",
+  "state":"noraml", 
+  "description": "Alice is an admin user"
+}
+
+demo data:
+{
+  "name": "Alice",
+  "role": "admin", // admin, user
+  "username": "alice",
+  // "password": "password",
+  "state":"noraml", // normal, ARCHIVED
+  "description": "Alice is an admin user",
+  //"avatarUrl":""
+  // "email": "”
+ // nickname
+}
+
+### ListAllUserStats returns all user stats.​
+POST {{$dotenv MEMO_BASE}}/v1/users/-/stats
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+奇怪？
+
+### GetUserByUsername gets a user by username.​
+GET {{$dotenv MEMO_BASE}}/v1/users?username=Otto
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+### GetUser gets a user by name.​
+
+GET {{$dotenv MEMO_BASE}}/v1/users/1
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+
+### other
+
 
 curl -H "Authorization: Bearer {{$dotenv MEMO_TOKEN}}" \
  {{$dotenv MEMO_BASE}}/v1/memos
