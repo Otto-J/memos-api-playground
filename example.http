@@ -3,11 +3,11 @@
 ### 给定ID 返回 activity
 
 ## UserService 用户服务
-### ListUsers returns a list of users
+### ListUsers returns a list of users - ok
 GET {{$dotenv MEMO_BASE}}/v1/users
 Authorization: Bearer {{$dotenv MEMO_TOKEN}}
 
-### CreateUser creates a new user
+### CreateUser creates a new user - ok
 POST {{$dotenv MEMO_BASE}}/v1/users
 Authorization: Bearer {{$dotenv MEMO_TOKEN}}
 
@@ -32,20 +32,40 @@ demo data:
  // nickname
 }
 
-### ListAllUserStats returns all user stats.​
+### ListAllUserStats returns all user stats.​ - FAIL
 POST {{$dotenv MEMO_BASE}}/v1/users/-/stats
 Authorization: Bearer {{$dotenv MEMO_TOKEN}}
 
 奇怪？
 
-### GetUserByUsername gets a user by username.​
-GET {{$dotenv MEMO_BASE}}/v1/users?username=Otto
+### GetUserByUsername gets a user by username.​ - FAIL
+@username=otto
+GET {{$dotenv MEMO_BASE}}/v1/users?username={{username}}
 Authorization: Bearer {{$dotenv MEMO_TOKEN}}
 
-### GetUser gets a user by name.​
+过滤器不生效
 
-GET {{$dotenv MEMO_BASE}}/v1/users/1
+### GetUser gets a user by name.​ - ok
+
+@name=users/1
+
+GET {{$dotenv MEMO_BASE}}/v1/{{name}}
 Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+### ListUserAccessTokens returns a list of access tokens for a user. - ok
+GET {{$dotenv MEMO_BASE}}/v1/{{name}}/access_tokens
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+忽略 token 的增加、删除
+
+### GetUserSetting gets the setting of a user.​ - ok
+GET {{$dotenv MEMO_BASE}}/v1/{{name}}/setting
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
+### GetUserStats returns the stats of a user.​ - FAIL
+GET {{$dotenv MEMO_BASE}}/v1/{{name}}/stats
+Authorization: Bearer {{$dotenv MEMO_TOKEN}}
+
 
 
 ### other
